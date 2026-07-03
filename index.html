@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Music Distribution ID &amp; Metadata Guide — ISRC, UPC/EAN &amp; DDEX Reference</title>
+<meta name="description" content="A copy-ready reference for ISRC and UPC/EAN music identifiers: structure, how to obtain them, best practices, DDEX standards, and catalog/royalty workflows." />
+<meta property="og:title" content="Music Distribution ID & Metadata Guide" />
+<meta property="og:description" content="Everything you need to know about ISRC codes, UPC/EAN barcodes, and metadata standards for music distribution." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,500,400&f[]=general-sans@500,400&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2312312e'/%3E%3Cpath d='M9 22V10l8-2v12' stroke='%2345d6ac' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='9' cy='23' r='2.4' fill='%2345d6ac'/%3E%3Ccircle cx='17' cy='21' r='2.4' fill='%2345d6ac'/%3E%3C/svg%3E" />
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="app">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+      <a href="#top" class="logo" aria-label="Music Distribution ID & Metadata Guide home">
+        <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect width="32" height="32" rx="7" fill="var(--color-primary)"/>
+          <path d="M9 22V10l8-2v12" stroke="var(--color-bg)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="9" cy="23" r="2.4" fill="var(--color-bg)"/>
+          <circle cx="17" cy="21" r="2.4" fill="var(--color-bg)"/>
+        </svg>
+        <span class="logo-text">ID &amp; Metadata<br/>Guide</span>
+      </a>
+      <button class="theme-toggle" data-theme-toggle aria-label="Switch to light mode" type="button"></button>
+    </div>
+
+    <div class="sidebar-search">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="search" id="filterInput" placeholder="Filter sections…" aria-label="Filter sections" />
+    </div>
+
+    <nav class="toc" aria-label="Table of contents">
+      <ul role="list" id="tocList">
+        <li><a href="#overview" data-toc>1. Overview</a></li>
+        <li><a href="#isrc" data-toc>2. ISRC Codes</a>
+          <ul role="list">
+            <li><a href="#isrc-what" data-toc>2.1 What it is</a></li>
+            <li><a href="#isrc-structure" data-toc>2.2 Structure</a></li>
+            <li><a href="#isrc-when" data-toc>2.3 When to assign</a></li>
+          </ul>
+        </li>
+        <li><a href="#obtaining-isrc" data-toc>3. Obtaining ISRCs</a>
+          <ul role="list">
+            <li><a href="#isrc-agency" data-toc>3.1 National agency</a></li>
+            <li><a href="#isrc-us" data-toc>3.2 United States</a></li>
+            <li><a href="#isrc-distributors" data-toc>3.3 Distributors</a></li>
+            <li><a href="#isrc-practices" data-toc>3.4 Best practices</a></li>
+          </ul>
+        </li>
+        <li><a href="#upc" data-toc>4. UPC/EAN Barcodes</a>
+          <ul role="list">
+            <li><a href="#upc-what" data-toc>4.1 What it is</a></li>
+            <li><a href="#upc-structure" data-toc>4.2 Structure</a></li>
+            <li><a href="#upc-when" data-toc>4.3 When to assign</a></li>
+          </ul>
+        </li>
+        <li><a href="#getting-upc" data-toc>5. Getting UPCs</a>
+          <ul role="list">
+            <li><a href="#upc-gs1" data-toc>5.1 Direct from GS1</a></li>
+            <li><a href="#upc-thirdparty" data-toc>5.2 Third-party vendors</a></li>
+            <li><a href="#upc-distributors" data-toc>5.3 Via distributors</a></li>
+          </ul>
+        </li>
+        <li><a href="#metadata" data-toc>6. Metadata &amp; Operations</a>
+          <ul role="list">
+            <li><a href="#metadata-core" data-toc>6.1 Core metadata</a></li>
+            <li><a href="#ddex" data-toc>6.2 DDEX standards</a></li>
+            <li><a href="#workflows" data-toc>6.3 Catalog &amp; royalties</a></li>
+          </ul>
+        </li>
+        <li><a href="#tools" data-toc>▸ Interactive tools</a></li>
+        <li><a href="#sources" data-toc>▸ Sources</a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-foot">
+      <a href="https://github.com/" class="gh-link" data-gh-link target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        <span>View on GitHub</span>
+      </a>
+      <p class="foot-note">Reference guide · updated 2026</p>
+    </div>
+  </aside>
+
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+
+  <!-- ============ MAIN ============ -->
+  <div class="content-col">
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <span class="breadcrumb">Reference / Music Distribution</span>
+      <div class="topbar-actions">
+        <span class="badge">v1.0</span>
+        <button class="btn-ghost" id="printBtn" type="button">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+          Print / PDF
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="hero" id="top">
+      <p class="eyebrow">Copy-ready outline</p>
+      <h1>Music Distribution ID &amp; Metadata Guide</h1>
+      <p class="hero-sub">A practical reference for ISRC codes and UPC/EAN barcodes — the two identifiers every independent artist, label, or distributor needs to release music professionally, plus the metadata and DDEX standards that keep a catalog and royalty pipeline honest.</p>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">12</span><span class="stat-label">characters in an ISRC</span></div>
+        <div class="stat"><span class="stat-num">12</span><span class="stat-label">digits in a UPC (GTIN-12)</span></div>
+        <div class="stat"><span class="stat-num">$95</span><span class="stat-label">US ISRC registrant fee, one-time</span></div>
+        <div class="stat"><span class="stat-num">100K</span><span class="stat-label">ISRCs/yr under one US prefix</span></div>
+      </div>
+    </section>
+
+    <!-- 1. OVERVIEW -->
+    <section class="block" id="overview" data-section>
+      <div class="block-head">
+        <span class="block-num">01</span>
+        <h2>Overview</h2>
+      </div>
+      <div class="block-body">
+        <ul class="check-list">
+          <li>ISRC and UPC/EAN are the core identifiers required for professional music distribution.</li>
+          <li>ISRC identifies individual <strong>recordings</strong>; UPC/EAN identifies the commercial <strong>product</strong> (single, EP, album) as a whole.
+            <sup><a href="#src-4" class="cite">4</a></sup><sup><a href="#src-2" class="cite">2</a></sup><sup><a href="#src-3" class="cite">3</a></sup>
+          </li>
+        </ul>
+
+        <div class="compare-cards">
+          <div class="compare-card">
+            <div class="compare-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            </div>
+            <h3>ISRC</h3>
+            <p class="compare-tagline">Identifies the recording</p>
+            <p>One code per distinct sound recording or music video — the specific mix, edit, or take.</p>
+          </div>
+          <div class="compare-card">
+            <div class="compare-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="1"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>
+            </div>
+            <h3>UPC / EAN</h3>
+            <p class="compare-tagline">Identifies the product</p>
+            <p>One code per release configuration — the single, EP, or album as a sellable unit.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. ISRC -->
+    <section class="block" id="isrc" data-section>
+      <div class="block-head">
+        <span class="block-num">02</span>
+        <h2>ISRC Codes</h2>
+      </div>
+      <div class="block-body">
+
+        <h3 id="isrc-what">2.1 What an ISRC is</h3>
+        <ul class="check-list">
+          <li>ISRC stands for <strong>International Standard Recording Code</strong>.</li>
+          <li>It is a 12-character code that uniquely identifies a specific sound recording or music video, not the underlying composition.
+            <sup><a href="#src-5" class="cite">5</a></sup><sup><a href="#src-6" class="cite">6</a></sup><sup><a href="#src-4" class="cite">4</a></sup>
+          </li>
+        </ul>
+
+        <h3 id="isrc-structure">2.2 ISRC structure</h3>
+        <p>Format: <code>CC-XXX-YY-NNNNN</code> — hyphens are shown for readability but are not part of the code itself.
+          <sup><a href="#src-7" class="cite">7</a></sup><sup><a href="#src-1" class="cite">1</a></sup><sup><a href="#src-5" class="cite">5</a></sup>
+        </p>
+
+        <div class="code-breakdown" role="group" aria-label="ISRC code structure breakdown">
+          <div class="code-string" aria-hidden="true">
+            <span class="seg seg-cc" data-part="cc">US</span><span class="sep">-</span><span class="seg seg-reg" data-part="reg">S1Z</span><span class="sep">-</span><span class="seg seg-yr" data-part="yr">24</span><span class="sep">-</span><span class="seg seg-des" data-part="des">00001</span>
+          </div>
+          <div class="code-legend">
+            <button class="legend-item" data-target="cc" type="button">
+              <span class="swatch swatch-cc"></span>
+              <span><strong>Country / prefix code</strong><br/>Territory issuing the code, or a non-geographic prefix for some registrants.</span>
+            </button>
+            <button class="legend-item" data-target="reg" type="button">
+              <span class="swatch swatch-reg"></span>
+              <span><strong>Registrant code</strong><br/>Assigned to the label, distributor, or rights owner.</span>
+            </button>
+            <button class="legend-item" data-target="yr" type="button">
+              <span class="swatch swatch-yr"></span>
+              <span><strong>Year of reference</strong><br/>Year the ISRC was assigned — not necessarily the recording date.</span>
+            </button>
+            <button class="legend-item" data-target="des" type="button">
+              <span class="swatch swatch-des"></span>
+              <span><strong>Designation code</strong><br/>Unique 5-digit track serial issued by the registrant for that year.</span>
+            </button>
+          </div>
+          <p class="fine-print">Components: country/prefix code (or non-geographic prefix), registrant code, year of reference, and designation code.
+            <sup><a href="#src-8" class="cite">8</a></sup><sup><a href="#src-1" class="cite">1</a></sup><sup><a href="#src-7" class="cite">7</a></sup>
+          </p>
+        </div>
+
+        <h3 id="isrc-when">2.3 When to assign ISRCs</h3>
+        <ul class="check-list">
+          <li>Every distinct recording gets its own ISRC: original mix, radio edit, remix, live version, remaster, alternate language version, etc.
+            <sup><a href="#src-4" class="cite">4</a></sup><sup><a href="#src-5" class="cite">5</a></sup>
+          </li>
+          <li>ISRCs are permanent and travel with the recording across distributors and platforms; they should <strong>never</strong> be reused for a different recording.
+            <sup><a href="#src-6" class="cite">6</a></sup><sup><a href="#src-8" class="cite">8</a></sup><sup><a href="#src-7" class="cite">7</a></sup>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 3. OBTAINING ISRC -->
+    <section class="block" id="obtaining-isrc" data-section>
+      <div class="block-head">
+        <span class="block-num">03</span>
+        <h2>Obtaining ISRCs</h2>
+      </div>
+      <div class="block-body">
+
+        <h3 id="isrc-agency">3.1 Through a national ISRC agency</h3>
+        <ul class="check-list">
+          <li>IFPI maintains a global list of national ISRC agencies and instructions under "Get ISRC" and "ISRC Agencies."
+            <sup><a href="#src-9" class="cite">9</a></sup><sup><a href="#src-10" class="cite">10</a></sup><sup><a href="#src-1" class="cite">1</a></sup>
+          </li>
+          <li>You apply to the appropriate agency (or the International ISRC Agency if your country has none) to receive a registrant/prefix code, then generate ISRCs yourself.
+            <sup><a href="#src-11" class="cite">11</a></sup><sup><a href="#src-12" class="cite">12</a></sup><sup><a href="#src-9" class="cite">9</a></sup>
+          </li>
+        </ul>
+
+        <h3 id="isrc-us">3.2 If you are in the United States</h3>
+        <div class="callout callout-info">
+          <ul class="check-list no-margin">
+            <li>The US ISRC Agency (run by RIAA) issues registrant codes for US-based rights holders via an online application.
+              <sup><a href="#src-13" class="cite">13</a></sup>
+            </li>
+            <li>A registrant prefix costs about <strong>$95 USD</strong> as a one-time fee and allows you to generate up to <strong>100,000 ISRCs per year</strong> with no per-code cost.
+              <sup><a href="#src-14" class="cite">14</a></sup><sup><a href="#src-15" class="cite">15</a></sup><sup><a href="#src-16" class="cite">16</a></sup><sup><a href="#src-17" class="cite">17</a></sup>
+            </li>
+          </ul>
+        </div>
+
+        <h3 id="isrc-distributors">3.3 Using distributors and service partners</h3>
+        <ul class="check-list">
+          <li>Many digital distributors automatically assign ISRCs when you upload tracks and can act as your ISRC manager.</li>
+          <li>Common examples include DistroKid, TuneCore, CD Baby, and LANDR, all of which generate ISRCs at no extra per-track cost when you distribute through them.
+            <sup><a href="#src-2" class="cite">2</a></sup><sup><a href="#src-18" class="cite">18</a></sup><sup><a href="#src-19" class="cite">19</a></sup><sup><a href="#src-20" class="cite">20</a></sup><sup><a href="#src-21" class="cite">21</a></sup><sup><a href="#src-22" class="cite">22</a></sup>
+          </li>
+        </ul>
+
+        <div class="provider-chip-row">
+          <span class="chip">DistroKid</span>
+          <span class="chip">TuneCore</span>
+          <span class="chip">CD Baby</span>
+          <span class="chip">LANDR</span>
+        </div>
+
+        <h3 id="isrc-practices">3.4 Best practices for ISRC management</h3>
+        <ul class="check-list">
+          <li>Maintain a catalog (spreadsheet or database) mapping each ISRC to: track title, version, main artist, featured artists, writers, release(s), and release date.
+            <sup><a href="#src-7" class="cite">7</a></sup><sup><a href="#src-6" class="cite">6</a></sup><sup><a href="#src-4" class="cite">4</a></sup>
+          </li>
+          <li>Never assign multiple ISRCs to the same recording, and never reuse an existing ISRC for a different recording.
+            <sup><a href="#src-4" class="cite">4</a></sup><sup><a href="#src-7" class="cite">7</a></sup>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 4. UPC -->
+    <section class="block" id="upc" data-section>
+      <div class="block-head">
+        <span class="block-num">04</span>
+        <h2>UPC/EAN Barcodes for Releases</h2>
+      </div>
+      <div class="block-body">
+
+        <h3 id="upc-what">4.1 What a UPC/EAN is in music</h3>
+        <ul class="check-list">
+          <li>UPC (Universal Product Code) and EAN (International Article Number) identify the <strong>product/release</strong> (single, EP, album, physical or digital) — not individual tracks.
+            <sup><a href="#src-23" class="cite">23</a></sup><sup><a href="#src-3" class="cite">3</a></sup><sup><a href="#src-24" class="cite">24</a></sup><sup><a href="#src-2" class="cite">2</a></sup>
+          </li>
+          <li>In a typical album: one UPC/EAN for the album, and one ISRC for each track.
+            <sup><a href="#src-25" class="cite">25</a></sup><sup><a href="#src-23" class="cite">23</a></sup>
+          </li>
+        </ul>
+
+        <h3 id="upc-structure">4.2 UPC structure (simplified)</h3>
+        <p>A UPC is a 12-digit GTIN-12 number, often encoded as a barcode for physical products.
+          <sup><a href="#src-26" class="cite">26</a></sup><sup><a href="#src-27" class="cite">27</a></sup><sup><a href="#src-28" class="cite">28</a></sup>
+        </p>
+
+        <div class="code-breakdown" role="group" aria-label="UPC code structure breakdown">
+          <div class="code-string" aria-hidden="true">
+            <span class="seg seg-comp" data-part="comp">036000</span><span class="seg seg-item" data-part="item">29145</span><span class="seg seg-chk" data-part="chk">2</span>
+          </div>
+          <div class="code-legend">
+            <button class="legend-item" data-target="comp" type="button">
+              <span class="swatch swatch-comp"></span>
+              <span><strong>Company / prefix digits</strong><br/>Identifies the label or brand.</span>
+            </button>
+            <button class="legend-item" data-target="item" type="button">
+              <span class="swatch swatch-item"></span>
+              <span><strong>Item reference</strong><br/>Identifies the specific release.</span>
+            </button>
+            <button class="legend-item" data-target="chk" type="button">
+              <span class="swatch swatch-chk"></span>
+              <span><strong>Check digit</strong><br/>Used for error detection.</span>
+            </button>
+          </div>
+          <p class="fine-print">Key parts: company/prefix digits (label/brand), item reference (specific release), and a check digit for error detection.
+            <sup><a href="#src-27" class="cite">27</a></sup><sup><a href="#src-29" class="cite">29</a></sup>
+          </p>
+        </div>
+
+        <h3 id="upc-when">4.3 When to assign a new UPC</h3>
+        <p>One UPC/EAN per distinct product configuration:</p>
+        <ul class="check-list">
+          <li>Standard vs. deluxe edition.</li>
+          <li>Different formats (digital, CD, vinyl).</li>
+          <li>Box sets or bundles.
+            <sup><a href="#src-2" class="cite">2</a></sup><sup><a href="#src-23" class="cite">23</a></sup><sup><a href="#src-26" class="cite">26</a></sup>
+          </li>
+        </ul>
+        <p>A re-release with substantial changes (new tracklist, new edition) generally needs a new UPC, even if some tracks are the same.
+          <sup><a href="#src-3" class="cite">3</a></sup><sup><a href="#src-2" class="cite">2</a></sup>
+        </p>
+      </div>
+    </section>
+
+    <!-- 5. GETTING UPC -->
+    <section class="block" id="getting-upc" data-section>
+      <div class="block-head">
+        <span class="block-num">05</span>
+        <h2>Getting UPCs</h2>
+      </div>
+      <div class="block-body">
+
+        <h3 id="upc-gs1">5.1 Directly from GS1 (label-grade approach)</h3>
+        <p>GS1 is the global standards body that licenses company prefixes and single GTINs/UPCs.
+          <sup><a href="#src-28" class="cite">28</a></sup><sup><a href="#src-30" class="cite">30</a></sup><sup><a href="#src-31" class="cite">31</a></sup>
+        </p>
+
+        <div class="pricing-cards">
+          <div class="pricing-card">
+            <p class="pricing-label">Single GTIN</p>
+            <p class="pricing-value">~$30<span>one-time</span></p>
+            <p>No annual renewal — good for a very small catalog.
+              <sup><a href="#src-32" class="cite">32</a></sup><sup><a href="#src-33" class="cite">33</a></sup>
+            </p>
+          </div>
+          <div class="pricing-card pricing-card-accent">
+            <p class="pricing-label">Company prefix</p>
+            <p class="pricing-value">~$250+<span>plus annual fees</span></p>
+            <p>Generate many UPCs under your own label identity.
+              <sup><a href="#src-30" class="cite">30</a></sup><sup><a href="#src-33" class="cite">33</a></sup><sup><a href="#src-34" class="cite">34</a></sup><sup><a href="#src-35" class="cite">35</a></sup>
+            </p>
+          </div>
+        </div>
+
+        <h3 id="upc-thirdparty">5.2 Third-party barcode vendors and bundled services</h3>
+        <ul class="check-list">
+          <li>Barcode resellers and manufacturing/replication services can sell or bundle UPCs for individual releases at relatively low cost (often <strong>$20–30 per code</strong>).
+            <sup><a href="#src-36" class="cite">36</a></sup><sup><a href="#src-37" class="cite">37</a></sup><sup><a href="#src-27" class="cite">27</a></sup>
+          </li>
+          <li>These codes are typically based on legacy GS1 prefixes and are widely accepted, but the "brand owner" in some databases may display as the reseller rather than your company.
+            <sup><a href="#src-38" class="cite">38</a></sup><sup><a href="#src-39" class="cite">39</a></sup><sup><a href="#src-27" class="cite">27</a></sup>
+          </li>
+        </ul>
+
+        <h3 id="upc-distributors">5.3 Distributors that provide UPCs</h3>
+        <div class="callout callout-info">
+          <ul class="check-list no-margin">
+            <li>Most digital music distributors will automatically provide a UPC/EAN for your release if you do not supply one, usually at no additional fee beyond their normal distribution charge.
+              <sup><a href="#src-40" class="cite">40</a></sup><sup><a href="#src-26" class="cite">26</a></sup><sup><a href="#src-2" class="cite">2</a></sup>
+            </li>
+            <li>This is often the simplest route for independent artists, but labels or platforms that want full control over catalog identifiers may prefer their own GS1 prefix.
+              <sup><a href="#src-24" class="cite">24</a></sup><sup><a href="#src-23" class="cite">23</a></sup><sup><a href="#src-27" class="cite">27</a></sup>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. METADATA -->
+    <section class="block" id="metadata" data-section>
+      <div class="block-head">
+        <span class="block-num">06</span>
+        <h2>Metadata, Standards, and Operations</h2>
+      </div>
+      <div class="block-body">
+
+        <h3 id="metadata-core">6.1 Core metadata to capture</h3>
+
+        <div class="metadata-grid">
+          <div class="metadata-card">
+            <h4>Per track / ISRC</h4>
+            <ul role="list" class="tag-list">
+              <li>Title</li><li>Version</li><li>Main artist</li><li>Featured artists</li>
+              <li>Writer / composer</li><li>Producer</li><li>Publisher</li><li>PRO affiliations</li>
+              <li>Language</li><li>Explicit flag</li><li>Genre</li><li>Recording date</li>
+              <li>Release date</li><li>Rights-holder splits</li>
+            </ul>
+            <p class="fine-print">
+              <sup><a href="#src-41" class="cite">41</a></sup><sup><a href="#src-6" class="cite">6</a></sup><sup><a href="#src-2" class="cite">2</a></sup>
+            </p>
+          </div>
+          <div class="metadata-card">
+            <h4>Per release / UPC</h4>
+            <ul role="list" class="tag-list">
+              <li>Release title</li><li>Type (single/EP/album)</li><li>Format</li>
+              <li>Territory rights</li><li>Track list with ISRCs</li><li>Track sequence</li>
+              <li>Release date(s)</li><li>Label name</li><li>Artwork</li>
+            </ul>
+            <p class="fine-print">
+              <sup><a href="#src-23" class="cite">23</a></sup><sup><a href="#src-3" class="cite">3</a></sup><sup><a href="#src-41" class="cite">41</a></sup>
+            </p>
+          </div>
+        </div>
+
+        <h3 id="ddex">6.2 DDEX and industry standards</h3>
+        <ul class="check-list">
+          <li>DDEX standards (e.g., <strong>ERN</strong> for release notifications and <strong>MEAD</strong> for enriched metadata) provide common XML/JSON formats for sending releases to DSPs and partners.
+            <sup><a href="#src-42" class="cite">42</a></sup><sup><a href="#src-43" class="cite">43</a></sup><sup><a href="#src-44" class="cite">44</a></sup>
+          </li>
+          <li>Using DDEX helps ensure ISRC and UPC data, along with metadata, travel consistently across distributors, stores, and royalty systems.
+            <sup><a href="#src-41" class="cite">41</a></sup><sup><a href="#src-42" class="cite">42</a></sup>
+          </li>
+        </ul>
+
+        <h3 id="workflows">6.3 Catalog and royalty workflows</h3>
+        <ul class="check-list">
+          <li>Implement validation checks for ISRC format, UPC/GTIN format, and uniqueness before releases go live.
+            <sup><a href="#src-29" class="cite">29</a></sup><sup><a href="#src-25" class="cite">25</a></sup><sup><a href="#src-23" class="cite">23</a></sup>
+          </li>
+          <li>Build or adopt a royalty pipeline that ingests usage/sales reports (often DDEX-based), maps them by ISRC and UPC to your catalog, and calculates pay-outs to rights holders.
+            <sup><a href="#src-42" class="cite">42</a></sup><sup><a href="#src-2" class="cite">2</a></sup><sup><a href="#src-41" class="cite">41</a></sup>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE TOOLS -->
+    <section class="block block-tools" id="tools" data-section>
+      <div class="block-head">
+        <span class="block-num">▸</span>
+        <h2>Interactive Tools</h2>
+      </div>
+      <div class="block-body">
+        <p class="tools-intro">Quick client-side checks — format validation only, not registry lookups. Nothing is sent anywhere.</p>
+
+        <div class="tool-grid">
+          <div class="tool-card">
+            <h3>ISRC format checker</h3>
+            <p class="tool-help">Paste a code (hyphens optional): <code>CC-XXX-YY-NNNNN</code></p>
+            <div class="tool-row">
+              <input type="text" id="isrcInput" placeholder="e.g. US-S1Z-24-00001" autocomplete="off" spellcheck="false" />
+              <button id="isrcCheck" type="button">Check</button>
+            </div>
+            <div class="tool-result" id="isrcResult" aria-live="polite"></div>
+          </div>
+
+          <div class="tool-card">
+            <h3>UPC / EAN checksum validator</h3>
+            <p class="tool-help">Paste a 12-digit UPC or 13-digit EAN.</p>
+            <div class="tool-row">
+              <input type="text" id="upcInput" placeholder="e.g. 036000291452" autocomplete="off" spellcheck="false" />
+              <button id="upcCheck" type="button">Validate</button>
+            </div>
+            <div class="tool-result" id="upcResult" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <div class="tool-card tool-card-wide">
+          <h3>Catalog template generator</h3>
+          <p class="tool-help">Download a starter CSV for tracking ISRCs and UPCs against your catalog metadata.</p>
+          <div class="tool-row">
+            <button id="downloadCsv" type="button" class="btn-primary">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download catalog_template.csv
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA / NEXT STEP -->
+    <section class="next-step">
+      <p>Want a shorter briefing?</p>
+      <h2>This outline collapses into a 1–2 page briefing focused only on "what do I need to launch a small distribution service, and what will identifiers cost this year?"</h2>
+    </section>
+
+    <!-- SOURCES -->
+    <section class="block block-sources" id="sources" data-section>
+      <div class="block-head">
+        <span class="block-num">▸</span>
+        <h2>Sources</h2>
+      </div>
+      <div class="block-body">
+        <ol class="sources-list" id="sourcesList"></ol>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Music Distribution ID &amp; Metadata Guide — compiled reference for independent artists, labels, and distributors.</p>
+  </footer>
+
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
