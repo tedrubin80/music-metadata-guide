@@ -2,7 +2,7 @@
 
 An interactive, single-page reference for the identifiers and metadata standards used in professional music distribution — ISRC codes, UPC/EAN barcodes, DDEX, and catalog/royalty workflows.
 
-**[View the guide](https://YOUR-GITHUB-USERNAME.github.io/music-metadata-guide/)** *(update this link after enabling GitHub Pages — see below)*
+**[View the guide](https://tedrubin80.github.io/music-metadata-guide/)**
 
 ## What's inside
 
